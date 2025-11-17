@@ -1,0 +1,29 @@
+Package: BIONICv3
+Title: The beautiful VBA BIONIC model translated to R
+Version: 0.0.0.9000
+Authors@R: 
+    person("Tymoteusz", "Pietrenko", , "Tymoteusz.Pietrenkot@unilever.com", role = c("aut", "cre"))
+    person("Patrik", "Engi", , "Patrik.Engi@unilever.com", role = c("aut", "cre"))
+    person("Jacob", "Collins", , "Jacob.Colins@unilever.com", role = c("aut", "cre"))
+Description: Allows the use of the BIONICv3 model in R using a graph based model
+    that allows a dynamic input to produce a list of calculated parameters. The 
+    graph based model allows for future quick changes to the model.
+URL: https://dev.azure.com/SEAC-Projects/Fish%20Exposure%20Calculator/_git/bionic_v3_package
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+Imports: 
+    dplyr,
+    igraph,
+    rlang
+Depends: 
+    R (>= 3.5)
+LazyData: true
