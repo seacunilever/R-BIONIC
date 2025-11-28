@@ -8,9 +8,10 @@
 #' @param ratio_bulk (unitless)speciation at bulk pH. See \link[BIONICv3]{calc_ratio}
 #' @param ion_type (unitless) the chemical's ionisation type which includes "A"(acid),
 #' "B"(base), "N"(neutral) and "Q"(QAC)
+#' @param z_water_value This is set to 1 for fugacity to work or the aquivlance approach
 #' @return (1/days) The gill elimination/clearance rate constant
-calc_gill_elimination_rate <- function(gill_uptake_rate, dfw_uptake_lysosome, ratio_bio, ratio_bulk,
-                                       ion_type, z_water_value = 1){
+calc_gill_elimination_rate <- function(gill_uptake_rate, dfw_uptake_lysosome, ratio_bio,
+                                       ratio_bulk, ion_type, z_water_value = 1){
 
   #if it's a QAC then no ratio is used
   if (ion_type=="Q"){

@@ -18,7 +18,7 @@ calc_dlysw(
 
 \item{lyso_pump}{(unitless)  ionisation dependent movement of chemical into lysosome see more: \link[BIONICv3]{calc_lyso_pump}}
 
-\item{anionc_frac}{(unitless) Fraction of total phospholipids that are anionic. Default is 0.175}
+\item{anionic_frac}{(unitless) Fraction of total phospholipids that are anionic. Default is 0.175}
 }
 \value{
 (unitless) The dissociation ratio between the lysosome and water

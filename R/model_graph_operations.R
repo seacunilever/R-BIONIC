@@ -28,7 +28,7 @@ input_checker <-function(g_data, g, run_result_list){
 #'
 #' checks if the range checker for an interval is in bounds (returns TRUE) or not(returns FALSE)
 #' @param data A vector of numeric values or numeric values that will be checked based on the constraint
-#' @param constraint A string that has the following lexicon '[0,9];(12,36)neq 4, 5' which based on 2 parts
+#' @param constraint A string that has the following lexicon '\[0,9\];(12,36)neq 4, 5' which based on 2 parts
 #' the inequality part and the not equal part. The inequality parts follow the closed/open intervals where brackets are
 #' exclusive and square brackets are inclusive, the inequalities are separated with a semi colon(;)
 #' The not equal part starts off with a 'neq ' and any numbers following it separated by a comma(,)
@@ -37,22 +37,20 @@ input_checker <-function(g_data, g, run_result_list){
 #' @export
 constraint_range_checker <- function(data, constraint) {
 
-  split <- strsplit(constraint, "neq ")[[1]]
+  split <- stringr::str_split(constraint, "neq ")[[1]]
 
   #False constraint if one of the numbers in neq
-  not_equals <- as.numeric(unlist(strsplit(split[2], ",")))
+  not_equals <- as.numeric(unlist(stringr::str_split(split[2], ",")))
   if (any(data%in%not_equals)){return(FALSE)}
 
   #goes to each interval and check if numbers are at least in 1 of them
-  intervals <- unlist(strsplit(split[1],";"))
+  intervals <- unlist(stringr::str_split(split[1],";"))
   interval_bool<-c()
   for (iter in intervals) {
     start <- substr(iter,1,1)
     end <- substr(iter, nchar(iter), nchar(iter))
-    nums <- unlist(strsplit(substr(iter, 2, nchar(iter)-1), ","))
+    nums <- unlist(stringr::str_split(substr(iter, 2, nchar(iter)-1), ","))
 
-    #strsplit is funny where if there is nothing at the end of the split it returns
-    #one item however if there is nothing before the split it returns 2
     if (nums[1]!=""){
 
       #changes based on interval
@@ -63,7 +61,7 @@ constraint_range_checker <- function(data, constraint) {
     }
     else{left_comparison<-T}
 
-    if(length(nums)!=1){
+    if(nums[2]!=""){
       right_comparison <- all(switch (end,
                                       "]" = data<=as.numeric(nums[2]),
                                       ")" = data<as.numeric(nums[2]))
@@ -94,8 +92,10 @@ constraint_checker <- function(g_data, data) {
   if (!is.list(data)){stop("the data has to be a list type with names of parameters")}
 
   #gets parameters that are in data and has a constraint in g_data
-  rel_params <- g_data$vertices[names(g_data$vertices)[names(g_data$vertices) %in% names(data)]]
-  constraint_params <- names(rel_params[sapply(rel_params, function(x)!is.null(x$constraint_type))])
+  match_params <- names(g_data$vertices)[names(g_data$vertices) %in% names(data)]
+  rel_params <- g_data$vertices[match_params]
+  graph_con_params <- sapply(rel_params, function(x)!is.null(x$constraint_type))
+  constraint_params <- names(rel_params[graph_con_params])
 
   invalid_params <- c()
 
@@ -130,13 +130,15 @@ constraint_checker <- function(g_data, data) {
 prune_graph <- function(g, root){
 
   #finds nodes that have no outgoing edges except from the root
-  outstanding_nodes <- igraph::V(g)[igraph::degree(g, mode = "out")==0 & igraph::V(g)$name!=root]
+  outstanding_nodes <- igraph::V(g)[igraph::degree(g, mode = "out")==0 &
+                                      igraph::V(g)$name!=root]
 
   while (length(outstanding_nodes)!=0) {
 
     #deleting vertices also deletes edges, so we can check for the degree property again and again
     g <- igraph::delete_vertices(g, outstanding_nodes)
-    outstanding_nodes <- igraph::V(g)[igraph::degree(g, mode = "out")==0 & igraph::V(g)$name!=root]
+    outstanding_nodes <- igraph::V(g)[igraph::degree(g, mode = "out")==0 &
+                                        igraph::V(g)$name!=root]
   }
 
   return(g)

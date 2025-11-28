@@ -11,7 +11,7 @@ calc_git_partition(
 )
 }
 \arguments{
-\item{fecal_vol_frac_list}{The volume fraction of the faecal material of partition. See \link[BIONICv3]{"calc_fecal_vol_frac_list"}}
+\item{fecal_vol_frac_list}{The volume fraction of the faecal material of partition. See \link[BIONICv3]{calc_fecal_vol_frac_list}}
 
 \item{distribution_ratio_list}{The list of distribution ratios for the partitions}
 

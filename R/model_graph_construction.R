@@ -28,8 +28,8 @@ create_base_graph <- function(root, root_function, custom_param_names = NA){
   }
 
   edges <- data.frame(from = custom_param_names,
-                        to = rep(root, length(custom_param_names)),
-                        param_name = formalArgs(root_function)[1:length(custom_param_names)])
+                      to = rep(root, length(custom_param_names)),
+                      param_name = formalArgs(root_function)[1:length(custom_param_names)])
 
   vertices <- list()
   vertices[[root]] <- list("name"=root,
@@ -105,7 +105,7 @@ add_model_to_graph <- function(g_data, vertex_name, vertex_type, vertex_value, c
 #' Add multiple defaults to the graph data
 #'
 #' This allows to add multiple default values to the model. This is used when multiple
-#' default values are wanted to be added without iterating over \link[BIONICv3]{add_model_graph}
+#' default values are wanted to be added without iterating over \link[BIONICv3]{add_model_to_graph}
 #'
 #' @param g_data A list including the root, edges dataframe and vertices list. Initiated by \link[BIONICv3]{create_base_graph}
 #' @param default_names A vector of strings, These are parameter values that are already in the g_data(specifically
@@ -167,7 +167,7 @@ add_inputs_to_graph <- function(g_data){
 #'
 #' Adds a constraint to a parameter in a graph based on either being a choice or a range.
 #'
-#' If it is a range than the following lexicon '[0,9];(12,36)neq 4, 5' which based on 2 parts
+#' If it is a range than the following lexicon '\[0,9 \];(12,36)neq 4, 5' which based on 2 parts
 #' the inequality part and the not equal part. The ineqaulity parts follow the closed/open intervals where brackets are
 #' exclusive and square brackets are inclusive, the inequalities are seperated with a semi colon(;)
 #' The not equal part starts off with a 'neq ' and any numbers following it seperated by a comma(,)
@@ -223,7 +223,7 @@ add_constraint_to_graph <- function(g_data, vertex_name, constraint_type, constr
 #' graph. If instead different parameters are wanted, please use \link[BIONICv3]{delete_model_from_graph} then \link[BIONICv3]{add_model_to_graph}
 #'
 #' @param g_data A list including the root, edges dataframe and vertices list. Initiated by \link[BIONICv3]{create_base_graph}
-#' @param verte_name a string that is the vertex that is inside the vertices and edges, the vertex that the function will be changing its function
+#' @param vertex_name a string that is the vertex that is inside the vertices and edges, the vertex that the function will be changing its function
 #' @param func_name A string that is the new function name to replace the older one, has to be in the global environment
 #' @param param_names_map A list that represents a map from existing parameter names to new ones, if just the name of the parameters has changed
 #' for the function
@@ -271,7 +271,8 @@ change_model_in_graph <- function(g_data, vertex_name, func_name, param_names_ma
     }
     #maps the new parameter names in the edges dataframe
     for (name in match_names) {
-      g_data$edges[g_data$edges$to==vertex_name & g_data$edges$param_name==name, "param_name"] <- param_names_map[[name]]
+      g_data_bool <- g_data$edges$to==vertex_name & g_data$edges$param_name==name
+      g_data$edges[g_data_bool, "param_name"] <- param_names_map[[name]]
     }
     g_data$vertices[[vertex_name]]$value <- func_name
   }
@@ -286,12 +287,13 @@ change_model_in_graph <- function(g_data, vertex_name, func_name, param_names_ma
 #' @param old_function a string that represents the name of the function to replace in the model
 #' @param new_function a string that represents the name of the function that will replace the old function. This has to be loaded to the global
 #' environment
-#' @param param_name A list that represents a map from existing parameter names to new ones, if just the name of the parameters has changed
+#' @param param_names_map A list that represents a map from existing parameter names to new ones, if just the name of the parameters has changed
 #' for the function
 #' @return A list g_data with the changed function for the all the vertices with the old function
 change_function_in_graph <- function(g_data, old_function, new_function, param_names_map = NA){
 
-  verts <- names(g_data$vertices[sapply(g_data$vertices, function(x)x$type=="function"&x$value==old_function)])
+  old_function_bool <- sapply(g_data$vertices, function(x)x$type=="function"&x$value==old_function)
+  verts <- names(g_data$vertices[old_function_bool])
 
   for (ver in verts) {
     g_data<-change_model_in_graph(g_data, ver, new_function, param_names_map)

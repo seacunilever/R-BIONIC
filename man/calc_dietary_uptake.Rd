@@ -21,7 +21,7 @@ calc_dietary_uptake(
 \item{dietary_uptake_b}{(unitless)Coefficient gathered from the regression. Default is 2}
 }
 \description{
-The absorption efficiency equation was defined by Gobas \link{21}, where the absorption efficiency
+The absorption efficiency equation was defined by Gobas [21], where the absorption efficiency
 data and octonal water partition coefficient was gathered from literature, specifically fish that
 were exposed only to contaminated food for a long period of time with a constant feeding rate.
 After that using the non-linear regression(SAS NLIN) to fit for parameter

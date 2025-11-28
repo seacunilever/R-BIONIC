@@ -14,7 +14,7 @@ calc_bcf(
 )
 }
 \arguments{
-\item{gill_uptake_rate}{(L/kg/day) The gill uptake rate constant. See \link[BIONICv3]{calc_gill_uptake_rate.Rd}}
+\item{gill_uptake_rate}{(L/kg/day) The gill uptake rate constant. See \link[BIONICv3]{calc_gill_uptake_rate}}
 
 \item{gill_elimination_rate}{(1/day) The gill elimination rate constant. See \link[BIONICv3]{calc_gill_elimination_rate}}
 

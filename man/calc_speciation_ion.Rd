@@ -7,7 +7,7 @@
 calc_speciation_ion(spectiation_neut)
 }
 \arguments{
-\item{speciation_neut}{speciation at neutral form}
+\item{spectiation_neut}{speciation at neutral form}
 }
 \value{
 (unitless) speciation at ion form

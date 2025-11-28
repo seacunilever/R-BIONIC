@@ -20,5 +20,5 @@ A g_data list with the added defaults
 }
 \description{
 This allows to add multiple default values to the model. This is used when multiple
-default values are wanted to be added without iterating over \link[BIONICv3]{add_model_graph}
+default values are wanted to be added without iterating over \link[BIONICv3]{add_model_to_graph}
 }

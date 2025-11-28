@@ -19,7 +19,7 @@ change_function_in_graph(
 \item{new_function}{a string that represents the name of the function that will replace the old function. This has to be loaded to the global
 environment}
 
-\item{param_name}{A list that represents a map from existing parameter names to new ones, if just the name of the parameters has changed
+\item{param_names_map}{A list that represents a map from existing parameter names to new ones, if just the name of the parameters has changed
 for the function}
 }
 \value{

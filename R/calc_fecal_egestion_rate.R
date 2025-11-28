@@ -74,7 +74,7 @@ calc_fecal_rate <- function(undigest_list, diet_rate){
 
 #' Calculate the dietary uptake
 #'
-#' The absorption efficiency equation was defined by Gobas [21], where the absorption efficiency
+#' The absorption efficiency equation was defined by Gobas \[21\], where the absorption efficiency
 #' data and octonal water partition coefficient was gathered from literature, specifically fish that
 #' were exposed only to contaminated food for a long period of time with a constant feeding rate.
 #' After that using the non-linear regression(SAS NLIN) to fit for parameter
@@ -106,12 +106,13 @@ calc_dietary_uptake <- function(partition_list, ion_type, dietary_uptake_a = 0.0
 #' Calculate the git partition or KGB
 #'
 #' This value is the ratio of the partitioning into the gut divided by the total partitioning to the fish
-#' @param fecal_vol_frac_list The volume fraction of the faecal material of partition. See \link[BIONICv3]{"calc_fecal_vol_frac_list"}
+#' @param fecal_vol_frac_list The volume fraction of the faecal material of partition. See \link[BIONICv3]{calc_fecal_vol_frac_list}
 #' @param distribution_ratio_list The list of distribution ratios for the partitions
 #' @param dfw_uptake_lysosome (unitless) The fish-water distribution ratio, recalculated to account for lysosomal sequestration.
 #' This is the same one used for gill elimination rate
 #' @return The ratio of the partitioning into the gut divided by the total partitioning to the fish
-calc_git_partition <- function(fecal_vol_frac_list, distribution_ratio_list, dfw_uptake_lysosome){
+calc_git_partition <- function(fecal_vol_frac_list, distribution_ratio_list,
+                               dfw_uptake_lysosome){
 
   if(dfw_uptake_lysosome==0){
     stop("Division by zero error")

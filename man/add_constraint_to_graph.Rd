@@ -22,7 +22,7 @@ A list g_data including the addition of a constraint inside the vertices for a g
 Adds a constraint to a parameter in a graph based on either being a choice or a range.
 }
 \details{
-If it is a range than the following lexicon '\link{0,9};(12,36)neq 4, 5' which based on 2 parts
+If it is a range than the following lexicon '[0,9 ];(12,36)neq 4, 5' which based on 2 parts
 the inequality part and the not equal part. The ineqaulity parts follow the closed/open intervals where brackets are
 exclusive and square brackets are inclusive, the inequalities are seperated with a semi colon(;)
 The not equal part starts off with a 'neq ' and any numbers following it seperated by a comma(,)

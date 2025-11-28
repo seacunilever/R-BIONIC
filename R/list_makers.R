@@ -57,8 +57,9 @@ list_distribution_ratio <- function(DSW, DMW, DMWAN, DSAW, DPW){
   return(distribution_ratio_list)
 }
 
-list_biotransformation_distribution_ratio <- function(DSW_biotransformation, DMW_biotransformation, DMWAN_biotransformation,
-                                          DSAW_biotransformation, DPW_biotransformation){
+list_biotransformation_distribution_ratio <- function(DSW_biotransformation, DMW_biotransformation,
+                                                      DMWAN_biotransformation, DSAW_biotransformation,
+                                                      DPW_biotransformation){
 
   biotransformation_dist_ratio_list <- list("DSW"=DSW_biotransformation, "DMW"=DMW_biotransformation, "DMWAN"=DMWAN_biotransformation,
                                         "DSAW"=DSAW_biotransformation, "DPW"=DPW_biotransformation)

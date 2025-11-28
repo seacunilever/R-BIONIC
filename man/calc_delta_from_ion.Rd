@@ -6,6 +6,13 @@
 \usage{
 calc_delta_from_ion(ion_type, delta_acid, delta_base)
 }
+\arguments{
+\item{ion_type}{The ion type of the chemical}
+
+\item{delta_acid}{If the ion_type is acid then this value is used}
+
+\item{delta_base}{If the ion type is base then this value is used}
+}
 \description{
 depending on the ion type the scaling factor changes so this function is placed to get the right
 defualt value

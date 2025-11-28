@@ -25,7 +25,6 @@ The aim of this guide is to provide a short form demonstration of the various ut
 To check this, run:
 
 ```{r setup}
-devtools::load_all()
 library(BIONICv3)
 ```
 

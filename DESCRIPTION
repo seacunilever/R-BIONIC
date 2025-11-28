@@ -1,10 +1,10 @@
 Package: BIONICv3
 Title: The beautiful VBA BIONIC model translated to R
-Version: 0.0.0.9000
-Authors@R: 
-    person("Tymoteusz", "Pietrenko", , "Tymoteusz.Pietrenkot@unilever.com", role = c("aut", "cre"))
-    person("Patrik", "Engi", , "Patrik.Engi@unilever.com", role = c("aut", "cre"))
-    person("Jacob", "Collins", , "Jacob.Colins@unilever.com", role = c("aut", "cre"))
+Version: 0.1.0
+Authors@R: c(
+    person("Tymoteusz", "Pietrenko", , "Tymoteusz.Pietrenkot@unilever.com", role = c("aut", "cre")),
+    person("Patrik", "Engi", , "Patrik.Engi@unilever.com", role = c("aut")),
+    person("Jacob", "Collins", , "Jacob.Colins@unilever.com", role = c("aut")))
 Description: Allows the use of the BIONICv3 model in R using a graph based model
     that allows a dynamic input to produce a list of calculated parameters. The 
     graph based model allows for future quick changes to the model.
@@ -17,13 +17,18 @@ RoxygenNote: 7.3.2
 Suggests: 
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    readxl,
+    dplyr,
+    htmltools
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 Imports: 
-    dplyr,
     igraph,
-    rlang
+    methods,
+    rlang,
+    stats,
+    stringr
 Depends: 
     R (>= 3.5)
 LazyData: true

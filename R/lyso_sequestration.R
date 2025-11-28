@@ -60,9 +60,10 @@ calc_lyso_membrane_vol_frac <- function(lyso_diam = 520, lyso_thick = 4){
 #' @param distribution_ratio_list a list of distribution ratios including DMW, DMWan
 #' @param lyso_membrane_vol_frac (unitless)  intralysosomal membrane volume see more: \link[BIONICv3]{calc_lyso_membrane_vol_frac}
 #' @param lyso_pump (unitless)  ionisation dependent movement of chemical into lysosome see more: \link[BIONICv3]{calc_lyso_pump}
-#' @param anionc_frac (unitless) Fraction of total phospholipids that are anionic. Default is 0.175
+#' @param anionic_frac (unitless) Fraction of total phospholipids that are anionic. Default is 0.175
 #' @return (unitless) The dissociation ratio between the lysosome and water
-calc_dlysw <- function(distribution_ratio_list, lyso_membrane_vol_frac, lyso_pump, anionic_frac = 0.175){
+calc_dlysw <- function(distribution_ratio_list, lyso_membrane_vol_frac, lyso_pump,
+                       anionic_frac = 0.175){
 
   lyso_wvf <- 1-lyso_membrane_vol_frac
 

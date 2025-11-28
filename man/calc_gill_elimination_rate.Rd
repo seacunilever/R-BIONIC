@@ -24,6 +24,8 @@ calc_gill_elimination_rate(
 
 \item{ion_type}{(unitless) the chemical's ionisation type which includes "A"(acid),
 "B"(base), "N"(neutral) and "Q"(QAC)}
+
+\item{z_water_value}{This is set to 1 for fugacity to work or the aquivlance approach}
 }
 \value{
 (1/days) The gill elimination/clearance rate constant

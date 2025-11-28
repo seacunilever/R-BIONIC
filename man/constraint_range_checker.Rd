@@ -9,7 +9,7 @@ constraint_range_checker(data, constraint)
 \arguments{
 \item{data}{A vector of numeric values or numeric values that will be checked based on the constraint}
 
-\item{constraint}{A string that has the following lexicon '\link{0,9};(12,36)neq 4, 5' which based on 2 parts
+\item{constraint}{A string that has the following lexicon '[0,9];(12,36)neq 4, 5' which based on 2 parts
 the inequality part and the not equal part. The inequality parts follow the closed/open intervals where brackets are
 exclusive and square brackets are inclusive, the inequalities are separated with a semi colon(;)
 The not equal part starts off with a 'neq ' and any numbers following it separated by a comma(,)

@@ -10,6 +10,8 @@ calc_assay_volume_fraction(mass, density, assay_s9)
 \item{mass}{(kg) The mass of a partition}
 
 \item{density}{(kg/(m^3)) The density of a partition}
+
+\item{assay_s9}{The assay S9 value used}
 }
 \value{
 (unitless) The assay volume fraction

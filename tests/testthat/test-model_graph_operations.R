@@ -487,6 +487,8 @@ test_that("Test Constraint Range Checker: exclusive and inclusive ranges",{
   expect_false(constraint_range_checker(c(10.1), "[0,10]"))
 
   expect_true(constraint_range_checker(c(999999), "[0,]"))
+  expect_false(constraint_range_checker(c(-1000), "[0,]"))
+  expect_true(constraint_range_checker(c(0), "[,]"))
 
   expect_true(constraint_range_checker(c(5), "(0,10)"))
   expect_true(constraint_range_checker(c(9.9), "(0,10)"))

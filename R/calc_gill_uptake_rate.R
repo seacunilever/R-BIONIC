@@ -19,9 +19,11 @@
 #' @param beta_eff the potential for passive uptake of the chemical in any form via paracellular
 #' routes defualted at 0.0001 in Armitage 2013.
 #' @return (unitless) The chemical uptake efficiency which will be between 0 and 1
-calc_gill_uptake_efficiency <- function(partition_list, ratio_gill, ion_type, speciation_gill_neut,
-                                   speciation_gill_ion, resistance_at_gill = 1.85, resistance_within_gill = 155, z_water_value = 1,
-                                   gamma_eff = NA, beta_eff = 0.0001){
+calc_gill_uptake_efficiency <- function(partition_list, ratio_gill, ion_type,
+                                        speciation_gill_neut, speciation_gill_ion,
+                                        resistance_at_gill = 1.85, resistance_within_gill = 155,
+                                        z_water_value = 1, gamma_eff = NA,
+                                        beta_eff = 0.0001){
 
   #gets the gamma efficiency from the ion_type
   if (is.na(gamma_eff)){

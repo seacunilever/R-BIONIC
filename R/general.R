@@ -122,7 +122,7 @@ calc_speciation_neut <- function(ratio){
 #'
 #' This calculates the speciation at a certain environments pH for a certain chemical of the ion form.
 #' To do this it is just 1- the speciation
-#' @param speciation_neut speciation at neutral form
+#' @param spectiation_neut speciation at neutral form
 #' @return (unitless) speciation at ion form
 calc_speciation_ion <- function(spectiation_neut){
 
@@ -185,6 +185,7 @@ calc_bionic_volume_fraction <- function(mass, density){
 #'
 #' Similar to \link[BIONICv3]{calc_bionic_volume_fraction} with the addition to assay S9
 #' @inheritParams calc_bionic_volume_fraction
+#' @param assay_s9 The assay S9 value used
 #' @return (unitless) The assay volume fraction
 calc_assay_volume_fraction <- function(mass, density, assay_s9){
   volume_fraction <- mass/density
@@ -247,6 +248,10 @@ calc_delta_from_ow <- function(delta_ow){
 #'
 #'depending on the ion type the scaling factor changes so this function is placed to get the right
 #'defualt value
+#'
+#' @param ion_type The ion type of the chemical
+#' @param delta_acid If the ion_type is acid then this value is used
+#' @param delta_base If the ion type is base then this value is used
 calc_delta_from_ion <- function(ion_type, delta_acid, delta_base){
   if (ion_type=="A"){
     return(delta_acid)

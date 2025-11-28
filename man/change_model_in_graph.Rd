@@ -9,12 +9,12 @@ change_model_in_graph(g_data, vertex_name, func_name, param_names_map = NA)
 \arguments{
 \item{g_data}{A list including the root, edges dataframe and vertices list. Initiated by \link[BIONICv3]{create_base_graph}}
 
+\item{vertex_name}{a string that is the vertex that is inside the vertices and edges, the vertex that the function will be changing its function}
+
 \item{func_name}{A string that is the new function name to replace the older one, has to be in the global environment}
 
 \item{param_names_map}{A list that represents a map from existing parameter names to new ones, if just the name of the parameters has changed
 for the function}
-
-\item{verte_name}{a string that is the vertex that is inside the vertices and edges, the vertex that the function will be changing its function}
 }
 \value{
 A list g_data with the changed function for the certain vertex chosen
