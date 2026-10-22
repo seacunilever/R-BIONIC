@@ -9,8 +9,7 @@ Description: Allows the use of the BIONICv3 model in R using a graph based model
     that allows a dynamic input to produce a list of calculated parameters. The 
     graph based model allows for future quick changes to the model.
 URL: https://dev.azure.com/SEAC-Projects/Fish%20Exposure%20Calculator/_git/bionic_v3_package
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: LGPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2

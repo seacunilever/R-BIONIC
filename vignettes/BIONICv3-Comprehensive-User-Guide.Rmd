@@ -50,7 +50,7 @@ This general BCF model is still used in BIONIC v3 model with only slight alterat
 
 $$BCF = \frac{C_B}{C_W} = V_w + \frac{kU}{kW + kB + kF + kG}\tag{3}$$
 
-where $V_w$ is the volume fraction of water ($unitless$), $kU$ is the gill uptake rate constant ($L/kg/d$), $kW$ is the gill elimination rate ($1/d$), $kB$ is the biotransformation rate ($1/d$), $kF$ is the fecal egestion rate constant ($1/d$), and $kG$ is the growth rate constant ($1/d$). The following is used to calculate the BCF in the package:
+where $V_w$ is the volume fraction of water ($L/kg$), $kU$ is the gill uptake rate constant ($L/kg/d$), $kW$ is the gill elimination rate ($1/d$), $kB$ is the biotransformation rate ($1/d$), $kF$ is the fecal egestion rate constant ($1/d$), and $kG$ is the growth rate constant ($1/d$). The following is used to calculate the BCF in the package:
 ```{r eval=FALSE}
 calc_bcf(gill_uptake_rate, gill_elimination_rate, growth_rate, fecal_egestion_rate,
          biotransformation_rate, vol_frac_list)
@@ -327,7 +327,7 @@ Parameters
 
 -   $Z_{W,bio}$(unitless) Total Z-value in fish (equation 31)
 
--   $DFW_{Lys,kW}$(?) - Fish-water distribution ratio(internal), recalculated to account for lysosomal sequestration
+-   $DFW_{Lys,kW}$($L/kg$) - Fish-water distribution ratio(internal), recalculated to account for lysosomal sequestration
 
 The following is the function that represents the sub-model in the package:
 ```{r eval=FALSE}
@@ -343,17 +343,17 @@ $$\begin{gathered} DFW_{kW} = V_{sl}DSW + (1- AnionicF)V_{pl} \cdot DMW + Anioni
 
 Parameters
 
--   $DFW_{kW}$(?) - Fish-water distribution ratio(internal), modified to handle soprtion to anionic phospholipids
+-   $DFW_{kW}$($L/kg$) - Fish-water distribution ratio(internal), modified to handle soprtion to anionic phospholipids
 
--   $V_{sl}$(?) - Fish volume fraction for storage lipids. Equation 73.
+-   $V_{sl}$($L/kg$) - Fish volume fraction for storage lipids. Equation 73.
 
--   $V_{pl}$(?) - Fish volume fraction for membrane lipids. Equation 73.
+-   $V_{pl}$($L/kg$) - Fish volume fraction for membrane lipids. Equation 73.
 
--   $V_{SerumAlb}$(?) - Fish volume fraction for serum albumin. Equation 73.
+-   $V_{SerumAlb}$($L/kg$) - Fish volume fraction for serum albumin. Equation 73.
 
--   $V_{StructProtein}$(?) - Fish volume fraction for structural protein. Equation 73.
+-   $V_{StructProtein}$($L/kg$) - Fish volume fraction for structural protein. Equation 73.
 
--   $V_{w}$(?) - Fish volume fraction for water. Equation 73.
+-   $V_{w}$($L/kg$) - Fish volume fraction for water. Equation 73.
 
 -   $DSW$(unitless) - Storage-lipid water distribution ratio. Equation 67 with $\alpha =SW$ and $\beta$ being the bio
 
@@ -365,7 +365,7 @@ Parameters
 
 -   $DPW$(unitless) - Structural protein-water distribution ratio. Equation 67 with $\alpha =PW$ and $\beta$ being the bio
 
--   $AnionicF$(?) - Fraction of membrane lipid that is anionic phospholipid. Default is 0.175, referenced in Schmitt. (2008)
+-   $AnionicF$(unitless) - Fraction of membrane lipid that is anionic phospholipid. Default is 0.175, referenced in Schmitt. (2008)
 
 The following is the function that represents the sub-model in the package:
 ```{r eval=FALSE}
@@ -870,7 +870,7 @@ $$\log_{10}(KPWN) = 0.8\log_{10}(KOWN) -0.68 \tag{65}$$ $$\log_{10}(KPWI) = \log
 
 -   $\Delta_{SAW}$(unitless) - Scaling factor for serum albumin-water, charged vs neutral form. User input or Default is if Acid then 0, if Basic then 1.
 
--   $\Delta_{PW}$(unitless) - Scaling factor for storage lipid-water, charged vs neutral form. User input or Default is $\Delta_{OW}$. From Armitage Table S7 (Armitage et al. 2013)
+-   $\Delta_{PW}$(unitless) - Scaling factor for Protein-water, charged vs neutral form. User input or Default is $\Delta_{OW}$. From Armitage Table S7 (Armitage et al. 2013)
 
 -   $\Delta_{OW}$(untiless) - Scaling factor for the octonal-water, charged vs neutral form. User input or Default is 3. From Armitage Table S7 (Armitage et al. 2013)
 
@@ -1954,6 +1954,11 @@ Kierkegaard, A., Chen, C. E., Armitage, J. M., Arnot, J. A., Droge, S., & McLach
 Krause, S., & Goss, K. U. (2018). In vitro–in vivo extrapolation of hepatic metabolism for different scenarios-a toolbox. Chemical Research in Toxicology, 31(11), 1195-1202.
 
 Mackay, D., & Fraser, A. (2000). Bioaccumulation of persistent organic chemicals: mechanisms and models. Environmental pollution, 110(3), 375-391.
+
+Nichols, John W, Schultz, Irv R, & Fitzsimmons, Patrick N (2006). In vitro-in vivo extrapolation of quantitative hepatic biotransformation data for fish - I. A review of methods, and strategies for incorporating intrinsic clearance estimates into chemical kinetic models. Aquatic Toxicology, 78(1)
+
+Nichols, J.W., Huggett, D.B., Arnot, J.A., Fitzsimmons, P.N. and Cowan-Ellsberry, C.E. (2013), Toward improved models for predicting bioconcentration of well-metabolized compounds by rainbow trout using measured rates of in vitro intrinsic clearance. Environ Toxicol Chem, 32: 1611-1622.
+
 
 Norstrom, R. J., McKinnon, A. E., & DeFreitas, A. S. (1976). A bioenergetics-based model for pollutant accumulation by fish. Simulation of PCB and methylmercury residue levels in Ottawa River yellow perch (Perca flavescens). Journal of the Fisheries Board of Canada, 33(2), 248-267.
 

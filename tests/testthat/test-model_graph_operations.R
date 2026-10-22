@@ -587,24 +587,63 @@ test_that("Test Pruning Graphs:Root node is preserved", {
 #----Compute-Graph--------------------------------------------------
 
 test_that("Test computing graph: No pruning graph computing",{
+
+  funcs <- g_data_closed$vertices[sapply(g_data_closed$vertices, function(x)x$type=="function")]
+  inc_edges <- igraph::incident_edges(g, names(funcs), mode = "in")
+  compute_data <- lapply(names(funcs), function(x){list(param_names = inc_edges[[x]]$param_name,
+                                                        vertex_params = names(igraph::tail_of(g, inc_edges[[x]])),
+                                                        func_name = g_data_closed$vertices[[x]]$value
+  )})
+  names(compute_data)<-names(funcs)
+
   result_run_list <- list("param_one"=1, "param_two"="A")
-  actual_list <- compute_graph(g_data_closed, g, result_run_list)
+  topo_order <- topo_order(g, result_run_list)
+
+  actual_list <- compute_graph(compute_data, topo_order, result_run_list)
   expect_equal(actual_list, list("param_one"=1, "param_two"="A", "test"=1))
 
+  funcs <- g_data_ext_closed$vertices[sapply(g_data_ext_closed$vertices, function(x)x$type=="function")]
+  inc_edges <- igraph::incident_edges(g_ext, names(funcs), mode = "in")
+  compute_data <- lapply(names(funcs), function(x){list(param_names = inc_edges[[x]]$param_name,
+                                                        vertex_params = names(igraph::tail_of(g_ext, inc_edges[[x]])),
+                                                        func_name = g_data_ext_closed$vertices[[x]]$value
+  )})
+  names(compute_data)<-names(funcs)
+
   result_run_list <- list("lonely_param"=42,"param_two"=53)
-  actual_list <- compute_graph(g_data_ext_closed, g_ext, result_run_list)
+  topo_order <- topo_order(g_ext, result_run_list)
+
+  actual_list <- compute_graph(compute_data, topo_order, result_run_list)
   expect_equal(actual_list, list("lonely_param"=42,"param_two"=53, "cool_param"=42, "param_one"=42, "test"=42))
 
 })
 
 test_that("Test computing graph: After Pruning", {
+
   g_pruned <- igraph::delete_vertices(g, c("param_one", "param_two"))
+
+  funcs <- g_data$vertices[sapply(g_data$vertices, function(x)x$type=="function")]
+  inc_edges <- igraph::incident_edges(g_pruned, names(funcs), mode = "in")
+  compute_data <- lapply(names(funcs), function(x){list(param_names = inc_edges[[x]]$param_name,
+                                                        vertex_params = names(igraph::tail_of(g_pruned, inc_edges[[x]])),
+                                                        func_name = g_data$vertices[[x]]$value
+  )})
+  names(compute_data)<-names(funcs)
   result_run_list <- list("test"=1)
-  actual_list <- compute_graph(g_data, g_pruned, result_run_list)
+  topo_order <- topo_order(g_pruned, result_run_list)
+  actual_list <- compute_graph(compute_data, topo_order, result_run_list)
   expect_equal(actual_list, list("test"=1))
 
   g_ext_pruned <- igraph::delete_vertices(g_ext, c("lonely_param", "cool_param"))
+  funcs <- g_data$vertices[sapply(g_data$vertices, function(x)x$type=="function")]
+  inc_edges <- igraph::incident_edges(g_ext_pruned, names(funcs), mode = "in")
+  compute_data <- lapply(names(funcs), function(x){list(param_names = inc_edges[[x]]$param_name,
+                                                        vertex_params = names(igraph::tail_of(g_ext_pruned, inc_edges[[x]])),
+                                                        func_name = g_data$vertices[[x]]$value
+  )})
+  names(compute_data)<-names(funcs)
   result_run_list <- list("param_one"=42, "param_two"=61)
-  actual_list <- compute_graph(g_data, g_ext_pruned, result_run_list)
+  topo_order <- topo_order(g_ext_pruned, result_run_list)
+  actual_list <- compute_graph(compute_data, topo_order, result_run_list)
   expect_equal(actual_list, list("param_one"=42, "param_two"=61, "test"=42))
 })

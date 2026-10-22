@@ -4,14 +4,14 @@
 \alias{compute_graph}
 \title{Computes graph through its topological order}
 \usage{
-compute_graph(g_data, g, run_result_list)
+compute_graph(compute_data, g_order, run_result_list)
 }
 \arguments{
+\item{run_result_list}{The run result list that contains all the parameters that were inputted}
+
 \item{g_data}{A list including the root, edges dataframe and vertices list. Initiated by \link[BIONICv3]{create_base_graph}}
 
 \item{g}{An igraph object that has been pruned and is a Directed Acyclic graph containing parameters as vertices}
-
-\item{run_result_list}{The run result list that contains all the parameters that were inputted}
 }
 \value{
 A list of the run_result_list with the calculated parameters after running through the graph until the root

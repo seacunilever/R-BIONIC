@@ -4,7 +4,7 @@
 \alias{process_check_skip}
 \title{Run test and process the model graph ready for model computation}
 \usage{
-process_check_skip(run_data, run_g, run_g_data)
+process_check_skip(nodes, run_g, run_g_data, run_result_list)
 }
 \description{
 Checks that:

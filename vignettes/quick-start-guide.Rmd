@@ -154,6 +154,7 @@ Edits can be made either through the use of Excel, by saving the template and ad
 input_template <- BIONICv3::template_bionicv3
 write.csv(input_template, "input_template.csv")
 # Edit offline in Excel
+
 filled_template <- read.csv("path_to_filled_template.csv")
 run_bionic_v3(filled_template)
 

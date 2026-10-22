@@ -153,28 +153,14 @@ prune_graph <- function(g, root){
 #' @param run_result_list The run result list that contains all the parameters that were inputted
 #' @return A list of the run_result_list with the calculated parameters after running through the graph until the root
 #' @export
-compute_graph <- function(g_data, g, run_result_list){
+compute_graph <- function(compute_data, g_order, run_result_list){
 
-  order <- names(igraph::topo_sort(g))
+  for (node in g_order){
 
-  #removes already filled values from the order
-  order <- order[!order%in%names(run_result_list)]
-  for (node in order){
-
-    edges_incoming <- g_data$edges[g_data$edges$to==node,]
-
-    #gets the parameters needed to calculate the current node
-    vertex_params <-edges_incoming$from
-
-    #gets the parameter names used in function
-    param_names <- edges_incoming$param_name
-
-    #puts the data into a list
-    func_dat <- setNames(run_result_list[vertex_params], param_names)
-
+    func_dat <- setNames(run_result_list[compute_data[[node]]$vertex_params],
+                         compute_data[[node]]$param_names)
     #compute using node function and the function
-    run_result_list[[node]] <- do.call(g_data$vertices[[node]]$value, func_dat)
+    run_result_list[[node]] <- do.call(compute_data[[node]]$func_name, func_dat)
   }
-
   return(run_result_list)
 }

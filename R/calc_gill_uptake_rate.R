@@ -29,7 +29,7 @@ calc_gill_uptake_efficiency <- function(partition_list, ratio_gill, ion_type,
   if (is.na(gamma_eff)){
     if (ion_type == "A"){
       gamma_eff <- 10000
-    }else if(ion_type == "B"){
+    }else if(ion_type == "B" || ion_type == "Q"){
       gamma_eff <- 300000
     }else{
       gamma_eff <- 100

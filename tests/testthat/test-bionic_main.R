@@ -25,7 +25,7 @@ test_that("Benchmarking BIONICv3 VBA to package", {
 
   #matches the colnames
   model_output_df <- lapply(model_output_df, function(x)x[!sapply(x, is.list)])
-  model_output_df <- do.call(dplyr::bind_rows, lapply(model_output_df, as.data.frame))
+  model_output_df <- do.call(dplyr::bind_rows, lapply(1:length(model_output_df), function(x)as.data.frame(model_output_df[[x]])))
   model_output_df <- model_output_df[,colnames(output_df)]
   for (i in colnames(model_output_df)){
     if(i%in%c("gill_elimination_rate", "fecal_egestion_rate", "growth_rate")){

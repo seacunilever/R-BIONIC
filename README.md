@@ -15,7 +15,7 @@ BIONICv3 is an R package implementation of the “BIONIC” model by Armitage et
 
 To install and use the package locally, first clone the repository using (assumes access to DevOps):
 
-    git clone https://github.com/seacunilever/R-BIONIC.git
+    git clone https://SEAC-Projects@dev.azure.com/SEAC-Projects/Fish%20Exposure%20Calculator/_git/bionic_v3_package
 
 Then install the package using the following commands (note, this requires devtools) 
 
